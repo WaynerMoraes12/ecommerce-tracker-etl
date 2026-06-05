@@ -1,180 +1,144 @@
-# ⚡ High-Frequency E-Commerce Tracker
+# ⚡ High-Frequency E-Commerce Tracker (ETL Pipeline)
 
-### Real-Time ETL Engine for Competitive Pricing Intelligence
+![Python](https://img.shields.io/badge/Python-3.10%2B-blue?style=for-the-badge\&logo=python)
+![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge\&logo=streamlit\&logoColor=white)
+![Playwright](https://img.shields.io/badge/Playwright-2EAD33?style=for-the-badge\&logo=playwright\&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge\&logo=postgresql\&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge\&logo=pandas\&logoColor=white)
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white">
-  <img src="https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white">
-  <img src="https://img.shields.io/badge/Playwright-2EAD33?style=for-the-badge&logo=playwright&logoColor=white">
-  <img src="https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white">
-</p>
+An end-to-end ETL solution designed to collect, process, store, and visualize real-time pricing data from e-commerce platforms.
 
----
-
-## 📌 Overview
-
-The **High-Frequency E-Commerce Tracker** is a real-time ETL platform built for market intelligence, competitive pricing analysis, and e-commerce monitoring.
-
-The application continuously scans online retail catalogs, processes pricing information, and delivers actionable insights through an interactive dashboard.
-
-By leveraging modern browser automation techniques, the platform can interact with dynamically rendered websites, collect structured product data, and transform it into business intelligence.
+The project combines browser automation, data transformation, relational database storage, and interactive dashboards to provide actionable market insights.
 
 ---
 
-## 🎯 Business Context
+## 🎯 Project Overview
 
-In highly competitive technology and e-commerce markets, pricing changes occur constantly. Traditional scraping approaches based solely on HTTP requests often fail when facing dynamically rendered content and modern website protection mechanisms.
+Monitoring competitor prices and market trends is a critical task in modern e-commerce.
 
-This project adopts a browser automation architecture powered by Playwright, allowing the system to interact with web pages similarly to a real user and extract reliable market data directly from online storefronts.
+Traditional scraping approaches based solely on HTTP requests often struggle with dynamic websites, lazy-loaded content, and anti-bot protections. This project addresses these challenges using browser automation with Playwright, enabling reliable extraction of real-world pricing data.
 
-### Key Benefits
+The pipeline follows a complete ETL architecture:
 
-* 📈 Competitive pricing intelligence
-* ⚡ Real-time data collection
-* 🛒 Automated catalog monitoring
-* 📊 KPI generation and visualization
-* 🔄 End-to-end ETL workflow
-* 🌐 Dynamic content extraction
+* **Extract:** Automated data collection from dynamic web pages.
+* **Transform:** Data cleaning, normalization, and price conversion.
+* **Load:** Persistent storage in PostgreSQL and visualization through Streamlit.
 
 ---
 
-## 🏗️ System Architecture
+## 🏗️ Architecture
 
-The platform follows a classic ETL pipeline composed of three integrated stages:
+### 1. Extract
 
-```text
-┌─────────────┐
-│   Extract   │
-└──────┬──────┘
-       │
-       ▼
-┌─────────────┐
-│ Transform   │
-└──────┬──────┘
-       │
-       ▼
-┌─────────────┐
-│    Load     │
-└─────────────┘
-```
+The extraction layer uses **Playwright (Async API)** to:
 
-### 1️⃣ Extract — Browser Automation Layer
+* Navigate dynamic websites.
+* Handle infinite scrolling and lazy-loaded content.
+* Wait for JavaScript-rendered elements.
+* Simulate realistic browser behavior.
 
-* Asynchronous Playwright execution
-* Native Microsoft Edge integration
-* Dynamic page rendering
-* Infinite scrolling support
-* Lazy-loading handling
-* DOM extraction and parsing
+### 2. Transform
 
-### 2️⃣ Transform — Data Processing Layer
+The transformation layer uses **Pandas** to:
 
-* HTML sanitization
-* String normalization
-* Currency conversion
-* Data validation
-* Dataset structuring with Pandas
+* Clean extracted data.
+* Normalize product information.
+* Convert price strings into numeric values.
+* Prepare datasets for analysis and storage.
 
-### 3️⃣ Load — Visualization Layer
+### 3. Load
 
-* Real-time dashboard rendering
-* Interactive tables
-* Pricing trend visualization
-* KPI calculations
-* Product access links
+The processed data is stored and visualized through:
+
+#### PostgreSQL
+
+* Automatic database initialization.
+* Automatic table creation.
+* Historical price tracking.
+* Structured relational storage.
+
+#### Streamlit Dashboard
+
+Interactive dashboard providing:
+
+* Lowest price available.
+* Average market price.
+* Product listings.
+* Real-time data refresh.
 
 ---
 
-## 🛠️ Technology Stack
+## 🚀 Technologies Used
 
-| Technology | Purpose                 |
-| ---------- | ----------------------- |
-| Python     | Core Application        |
-| Playwright | Browser Automation      |
-| Pandas     | Data Processing         |
-| Streamlit  | Dashboard Interface     |
-| AsyncIO    | Asynchronous Operations |
-
----
-
-## 📂 Project Structure
-
-```bash
-ecommerce-tracker-etl/
-│
-├── dashboard.py
-├── requirements.txt
-├── scraper/
-│   ├── extract.py
-│   ├── transform.py
-│   └── load.py
-│
-├── data/
-├── assets/
-└── README.md
-```
+* Python 3.10+
+* Playwright
+* Pandas
+* PostgreSQL
+* Psycopg2
+* Streamlit
+* Asyncio
 
 ---
 
-## 🚀 Installation
+## 📦 Installation
 
 ### Prerequisites
 
-Before starting, make sure you have:
+* Python 3.10+
+* Microsoft Edge or Chromium-based browser
+* PostgreSQL running locally
 
-* Python 3.10 or higher
-* Microsoft Edge installed
-* Git installed
-
----
-
-### 1. Clone the Repository
+### Clone the Repository
 
 ```bash
-git clone https://github.com/blackgamer_07/ecommerce-tracker-etl.git
+git clone https://github.com/WaynerMoraes12/ecommerce-tracker-etl.git
 
 cd ecommerce-tracker-etl
 ```
 
----
-
-### 2. Create a Virtual Environment
-
-#### Windows
+### Create a Virtual Environment
 
 ```bash
 python -m venv venv
+```
 
+Windows:
+
+```bash
 venv\Scripts\activate
 ```
 
-#### Linux / macOS
+Linux / macOS:
 
 ```bash
-python -m venv venv
-
 source venv/bin/activate
 ```
 
----
-
-### 3. Install Dependencies
+### Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
----
-
-### 4. Install Playwright Components
+### Install Playwright Browsers
 
 ```bash
 playwright install
 ```
 
----
+### Configure Database Credentials
 
-### 5. Launch the Dashboard
+Update the PostgreSQL connection settings in `dashboard.py`:
+
+```python
+DB_NAME = "ecommerce_db"
+DB_USER = "postgres"
+DB_PASS = "your_password"
+DB_HOST = "localhost"
+DB_PORT = "5432"
+```
+
+### Run the Application
 
 ```bash
 streamlit run dashboard.py
@@ -182,97 +146,45 @@ streamlit run dashboard.py
 
 ---
 
-## 📊 Dashboard Features
+## 📊 Database Schema
 
-* Product catalog monitoring
-* Real-time price tracking
-* Average price calculation
-* Pricing trend analysis
-* Product links
-* Data filtering and sorting
-
----
-
-## 🔄 ETL Workflow
-
-```mermaid
-flowchart LR
-
-A[Retail Website] --> B[Playwright Extraction]
-B --> C[Data Cleaning]
-C --> D[Pandas Processing]
-D --> E[Structured Dataset]
-E --> F[Streamlit Dashboard]
-F --> G[Business Insights]
-```
+| Column      | Type      | Description          |
+| ----------- | --------- | -------------------- |
+| id          | SERIAL    | Unique identifier    |
+| equipamento | TEXT      | Product name         |
+| preco       | NUMERIC   | Product price        |
+| url         | TEXT      | Product URL          |
+| data_coleta | TIMESTAMP | Collection timestamp |
 
 ---
 
-## 📈 Use Cases
+## 🛠️ Resilience Features
 
-### Market Intelligence
+The scraper was designed to handle common challenges found in modern e-commerce websites:
 
-Track competitor pricing and identify market opportunities.
-
-### E-Commerce Monitoring
-
-Monitor products and pricing fluctuations in real time.
-
-### Business Analytics
-
-Generate pricing KPIs and comparative analysis.
-
-### Competitive Research
-
-Analyze product positioning and market behavior.
+* Dynamic content rendering.
+* Lazy loading.
+* Infinite scrolling.
+* Temporary anti-bot challenges.
+* Retry and wait strategies during extraction.
 
 ---
 
-## 🔒 Reliability Features
+## 📈 Future Improvements
 
-* Dynamic content support
-* JavaScript-rendered page handling
-* Lazy-loading compatibility
-* Asynchronous processing
-* Data validation pipeline
-* Fault-tolerant workflow
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome.
-
-1. Fork the repository
-
-2. Create a feature branch
-
-```bash
-git checkout -b feature/new-feature
-```
-
-3. Commit your changes
-
-```bash
-git commit -m "Add new feature"
-```
-
-4. Push to the branch
-
-```bash
-git push origin feature/new-feature
-```
-
-5. Open a Pull Request
+* Docker containerization.
+* Scheduled ETL execution.
+* Price variation alerts.
+* Historical trend analysis.
+* REST API integration.
+* Cloud deployment.
 
 ---
 
-## 📄 License
+## 👨‍💻 Author
 
-This project is licensed under the MIT License.
+**Wayner Moraes**
 
----
+QA Engineer | Automation Engineer | Python Developer
 
-<p align="center">
-Built with ❤️ using Python, Playwright, Pandas and Streamlit
-</p>
+GitHub: https://github.com/WaynerMoraes12
